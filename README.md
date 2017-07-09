@@ -1,5 +1,5 @@
-A convenience webpack template I made. Nothing too fancy, just sufficient for most Typescript'd react + stylus tasks, with webpack-dev-server and html files handled not too shabbily. 
+This is just a contact lists app that makes use of react on the front end and SQLite as a database. 
 
-It's more or less a work in progress. Will update this as I see fit. Feel free to get in touch with me and maybe we can make this a more generalist project.
+Built with electron. 
 
-Thanks for taking the time.
+I've made use of [webpack-wannabe-boilerplate](https://github.com/arjunepr/webpack-wannabe-template) which I am the author of.

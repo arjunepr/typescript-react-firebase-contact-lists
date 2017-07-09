@@ -1,16 +1,16 @@
 {
-  "name": "webpack-wannabe-boilerplate",
-  "version": "0.1.0",
-  "description": "A working quick to run webpack boilerplate with Stylus and Typescript, with React support. Also includes webpack-dev-server and handles html files decently.",
-  "main": "index.js",
+  "name": "react-contact-lists",
+  "version": "1.0.0",
+  "description": "An Electron Contact Lists App that makes use of React on the front end, and SQLite as a database.",
+  "main": "main.js",
   "author": "Arjun Raju Pillai <revarjunr@gmail.com>",
-  
   "scripts": {
     "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'webpack-dev-server'",
     "build": "NODE_ENV=production webpack -p"
   },
   "devDependencies": {
     "css-loader": "^0.28.4",
+    "electron": "^1.6.11",
     "extract-loader": "^0.1.0",
     "extract-text-webpack-plugin": "beta",
     "file-loader": "^0.11.2",
@@ -26,6 +26,6 @@
     "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0"
   },
-  
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "..."
 }
