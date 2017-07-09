@@ -11,10 +11,12 @@ const Merge = require('webpack-merge');
 const { join } = require('path');
 
 const commonConfig = {
-  entry: ['./src/app.ts'],
+  entry: {
+    build: './src/app.ts',
+  },
   output: {
     path: join(__dirname, 'dist'),
-    filename: './build.js'
+    filename: '[name].bundle.js'
   },
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx', '.html']
@@ -63,7 +65,13 @@ const commonConfig = {
       }
     ]
   },
-  plugins: [new ExtractTextPlugin('style.css')]
+  plugins: [
+    new ExtractTextPlugin('style.css'),
+
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor'
+      })
+    ]
 };
 
 const devConfig = {
