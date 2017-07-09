@@ -5,8 +5,14 @@
   "main": "main.js",
   "author": "Arjun Raju Pillai <revarjunr@gmail.com>",
   "scripts": {
-    "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'webpack-dev-server'",
+    "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'webpack'",
     "build": "NODE_ENV=production webpack -p"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router": "^4.1.1",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "css-loader": "^0.28.4",
@@ -23,9 +29,8 @@
     "ts-loader": "^2.2.2",
     "typescript": "^2.4.1",
     "webpack": "^3.1.0",
-    "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0"
   },
   "license": "MIT",
-  "repository": "..."
+  "repository": "git@github.com:arjunepr/react-electron-contact-lists.git"
 }

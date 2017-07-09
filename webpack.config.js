@@ -67,15 +67,7 @@ const commonConfig = {
 };
 
 const devConfig = {
-  devtool: 'cheap-eval-source-map',
-  devServer: {
-    contentBase: join(__dirname, "dist"),
-    compress: true,
-    port: 8080,
-  },
-  entry: [
-    "webpack-dev-server/client?http://localhost:8080/"
-  ]
+  devtool: 'cheap-eval-source-map'
 };
 
 const prodConfig = {
