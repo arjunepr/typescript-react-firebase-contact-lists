@@ -10,6 +10,10 @@
   version "7.0.33"
   resolved "https://registry.npmjs.org/@types/node/-/node-7.0.33.tgz#ae3c53ad01d7e9d62c7f1a85c5f7500d59b9d25b"
 
+"@types/prop-types@^15.5.1":
+  version "15.5.1"
+  resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.5.1.tgz#1ecf52621299e65b855374337fb11fd2d1066fc1"
+
 "@types/react-router-dom@^4.0.6":
   version "4.0.6"
   resolved "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-4.0.6.tgz#e3bd43e4dcae8aed421f53b02425cc83242f3983"
