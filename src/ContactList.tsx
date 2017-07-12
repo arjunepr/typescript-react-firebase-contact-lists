@@ -10,6 +10,10 @@ class ContactList extends React.Component<any, any> {
     this.state = {
       contacts: []
     };
+
+    this.resetList = this.resetList.bind(this);
+    this.addContact = this.addContact.bind(this);
+    this.updateContact = this.updateContact.bind(this);
   }
 
   componentDidMount(){
@@ -35,9 +39,22 @@ class ContactList extends React.Component<any, any> {
         console.log(err);
         throw err;
       }
+
+      this.resetList();
     });
 
-    this.resetList();
+  }
+
+  updateContact(doc :any, updations: Object){
+    
+    const doc_id = doc._id;
+
+    db.update({ _id: doc_id}, {updations}, (err: Error) => {
+      if(err){
+        console.log(err);
+        throw err;
+      }
+    });
   }
 
   render(){

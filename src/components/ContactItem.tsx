@@ -32,6 +32,8 @@ class ContactItem extends React.Component<any, any> {
       editable: false,
     });
 
+    this.props.updateContact(event, )
+
 
 
   }

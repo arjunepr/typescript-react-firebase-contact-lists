@@ -53,7 +53,7 @@ class newContact extends React.Component<any, any> implements InewContact {
     <input name="email" ref={node => this.email = node} type="text"/>
     <input name="phone" ref={node => this.phone = node} type="number"/>
     <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}></button>
-    </form>)
+    </form>);
   }
   
 }
