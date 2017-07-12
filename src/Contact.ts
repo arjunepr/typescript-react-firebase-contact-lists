@@ -2,13 +2,13 @@ import { Component } from 'react';
 
 export default abstract class Contact extends Component<any, any> {
 
-  name: HTMLInputElement | null;
-  email: HTMLInputElement | null;
-  phone: HTMLInputElement | null;
+  protected name: HTMLInputElement | null;
+  protected email: HTMLInputElement | null;
+  protected phone: HTMLInputElement | null;
 
-  static fields: Array<string> = ['name', 'email', 'phone'];
+  protected static fields: Array<string> = ['name', 'email', 'phone'];
 
-  static propTypes: {};
+  public static propTypes: {};
 
   [index: string]: any;
 
@@ -22,7 +22,7 @@ export default abstract class Contact extends Component<any, any> {
 
   
 
-  generateRecord(){
+  protected generateRecord(){
     return this.fields.reduce((record: any, currentField: string) => {
 
       record[currentField] = this[currentField].value.trim();

@@ -19,21 +19,13 @@ const commonConfig = {
     filename: '[name].bundle.js'
   },
   resolve: {
-    extensions: ['.js', '.json', '.ts', '.tsx', '.html']
+    extensions: ['.js', '.json', '.ts', '.tsx', '.html'],
   },
   node: {
     fs: 'empty',
   },
   module: {
     rules: [
-      { 
-        test: /\.styl$/, 
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-
-          use: ['css-loader', 'stylus-loader']
-        })
-      },
 
       { 
         test: /\.((ts)|(tsx))$/, 
@@ -66,7 +58,6 @@ const commonConfig = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
 
     new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
@@ -75,16 +66,64 @@ const commonConfig = {
 };
 
 const devConfig = {
-  devtool: 'cheap-eval-source-map'
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      { 
+        test: /\.styl$/, 
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
+      },
+
+      { 
+        test: /\.css$/, 
+        use: ['style-loader', 'css-loader'],
+      },
+    ]
+  },
+
+  devServer: {
+      contentBase: join(__dirname, "dist"),
+      compress: true,
+      port: 8080,
+      historyApiFallback: true
+    },
+
+    entry: {
+      server: "webpack-dev-server/client?http://localhost:8080/"
+    }
 };
 
 const prodConfig = {
   devtool: 'source-map',
+  module: {
+    rules: [
+      { 
+        test: /\.styl$/, 
+        use: ExtractTextPlugin.extract({
+          fallback: {loader: 'style-loader'},
+
+          use: ['css-loader', 'stylus-loader']
+        })
+      },
+
+      { 
+        test: /\.css$/, 
+        use: ExtractTextPlugin.extract({
+          fallback: {loader: 'style-loader'},
+
+          use: ['css-loader']
+        })
+      },
+    ],
+  },
   plugins: [
   //   new UglifyJSPlugin({
   //   extractComments: true,
   //   sourceMap: true
   // })
+
+  new ExtractTextPlugin('style.css'),
+
   new webpack.optimize.UglifyJsPlugin({ 
     sourceMap: true,
     beautify: false,
@@ -97,5 +136,6 @@ const prodConfig = {
    })
   ]
 };
+
 
 module.exports = (process.env.NODE_ENV === 'development' ? Merge(commonConfig, devConfig) : Merge(commonConfig, prodConfig)); 

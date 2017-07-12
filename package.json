@@ -5,13 +5,15 @@
   "main": "main.js",
   "author": "Arjun Raju Pillai <revarjunr@gmail.com>",
   "scripts": {
-    "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'webpack'",
-    "build": "NODE_ENV=production webpack -p"
+    "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'rm -rf dist && webpack-dev-server'",
+    "build": "NODE_ENV=production rm -rf dist && webpack -p"
   },
   "dependencies": {
     "@types/nedb": "^1.8.3",
+    "@types/node": "^8.0.10",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.35",
+    "@types/react-dom": "^15.5.1",
     "@types/react-router-dom": "^4.0.6",
     "nedb": "^1.8.0",
     "prop-types": "^15.5.10",
@@ -35,6 +37,7 @@
     "ts-loader": "^2.2.2",
     "typescript": "^2.4.1",
     "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0"
   },
   "license": "MIT",

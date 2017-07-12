@@ -1,7 +1,7 @@
 import * as React from 'react';
-import AddContact from './components/AddContact';
-import ContactItem from './components/ContactItem';
-import db from './db';
+import AddContact from './AddContact';
+import ContactItem from './ContactItem';
+import db from '../db';
 
 class ContactList extends React.Component<any, any> {
   constructor(props: any){

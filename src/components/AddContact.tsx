@@ -13,12 +13,11 @@ class AddContact extends Contact {
   }
 
   validate(){
-    
-    return this.fields.every((field: string) => this[field] ? this[field].value.trim() : null);
+    return AddContact.fields.every((field: string) => this[field] ? this[field].value.trim() : null);
   }
 
   clearFields(){
-    this.fields.forEach((field: string) => this[field].value = '');
+    AddContact.fields.forEach((field: string) => this[field].value = '');
   }
 
   addContact(event: React.FormEvent<HTMLFormElement>) {
@@ -39,7 +38,7 @@ class AddContact extends Contact {
     <input name="name" ref={name => this.name = name} type="text"/>
     <input name="email" ref={email => this.email = email} type="text"/>
     <input name="phone" ref={phone => this.phone = phone} type="number"/>
-    <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}></button>
+    <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}>Add Contact</button>
     </form>);
   }
   
