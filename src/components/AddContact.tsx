@@ -1,27 +1,15 @@
 import * as React from 'react';
+import * as PropTypes  from "prop-types";
+import Contact from '../Contact';
 
-interface InewContact {
-  name: HTMLInputElement | null;
-  email: HTMLInputElement | null;
-  phone: HTMLInputElement | null;
-
-};
-
-class newContact extends React.Component<any, any> implements InewContact {
-  email: HTMLInputElement | null;
-  phone: HTMLInputElement | null;
-  name: HTMLInputElement | null;
-
-  [index: string] : any;
-
-  fields = ['name', 'email', 'phone'];
-
+class AddContact extends Contact {
 
   constructor(props: any){
     super(props);
 
     this.validate = this.validate.bind(this);
     this.clearFields = this.clearFields.bind(this);
+    this.addContact = this.addContact.bind(this);
   }
 
   validate(){
@@ -33,29 +21,32 @@ class newContact extends React.Component<any, any> implements InewContact {
     this.fields.forEach((field: string) => this[field].value = '');
   }
 
+  addContact(event: React.FormEvent<HTMLFormElement>) {
+
+    event.preventDefault();
+
+    this.props.addContact(this.generateRecord());
+
+    this.clearFields();
+
+  }
+
 
   render(){
 
-    // const newEntry = { 
-    //   name: this.name.value.trim()
-    // };
 
-    const newEntry = this.fields.reduce((record: any, currentField: string) => {
-
-      record[currentField] = this[currentField].value.trim();
-
-      return record;
-
-    }, {}); 
-
-    return (<form onSubmit={() => { this.props.addContact(newEntry); this.clearFields(); } } className="add-contact">
-    <input name="name" ref={node => this.name = node} type="text"/>
-    <input name="email" ref={node => this.email = node} type="text"/>
-    <input name="phone" ref={node => this.phone = node} type="number"/>
+    return (<form onSubmit={this.addContact} className="add-contact">
+    <input name="name" ref={name => this.name = name} type="text"/>
+    <input name="email" ref={email => this.email = email} type="text"/>
+    <input name="phone" ref={phone => this.phone = phone} type="number"/>
     <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}></button>
     </form>);
   }
   
 }
 
-export default newContact;
+AddContact.propTypes = {
+  addContact: PropTypes.func.isRequired
+};
+
+export default AddContact;

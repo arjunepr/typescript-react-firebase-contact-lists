@@ -1,20 +1,17 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+import Contact from '../Contact';
 
-class ContactItem extends React.Component<any, any> {
-  static propTypes: {};
+class ContactItem extends Contact {
   
   constructor(props: any){
     super(props);
     this.state = {
-      // name: props.name,
-      // email: props.email,
-      // phone: props.phone,
-      editable: false,
-    };
 
-    this.state.editable = false;
+      editable: false,
+
+    };
 
     this.updateDetails = this.updateDetails.bind(this);
   }
@@ -32,9 +29,7 @@ class ContactItem extends React.Component<any, any> {
       editable: false,
     });
 
-    this.props.updateContact(event, )
-
-
+    this.props.updateContact(this.props.contact, this.generateRecord());
 
   }
   
@@ -45,9 +40,9 @@ class ContactItem extends React.Component<any, any> {
 
     return (
       <form onSubmit={this.updateDetails} className="contact-item">
-        <input name="name" type="text" value={user.name} disabled={editable}/>
-        <input name="email" type="email" value={user.email} disabled={editable}/>
-        <input name="phone" type="number" value={user.number} disabled={editable}/>
+        <input name="name" type="text" defaultValue={user.name} ref={(input) => this.name = name}  disabled={!editable}/>
+        <input name="email" type="email" defaultValue={user.email} ref={(email) => this.email = email} disabled={!editable}/>
+        <input name="phone" type="number" defaultValue={user.number} ref={(phone) => this.phone = phone} disabled={!editable}/>
         <button type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
       </form> )
   }
@@ -59,7 +54,7 @@ ContactItem.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     phone: PropTypes.number,
-  })
+  }).isRequired
 };
 
 export default ContactItem;
