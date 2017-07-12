@@ -39,21 +39,25 @@ class ContactItem extends React.Component<any, any> {
   
   render(){
     const editable = this.state.editable;
+    const user = this.props.contact;
 
     return (
       <form onSubmit={this.updateDetails} className="contact-item">
-        <input name="name" type="text" value={this.props.name} disabled={editable}/>
-        <input name="email" type="email" value={this.props.email} disabled={editable}/>
-        <input name="phone" type="number" value={this.props.number} disabled={editable}/>
+        <input name="name" type="text" value={user.name} disabled={editable}/>
+        <input name="email" type="email" value={user.email} disabled={editable}/>
+        <input name="phone" type="number" value={user.number} disabled={editable}/>
         <button type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
       </form> )
   }
 };
 
 ContactItem.propTypes = {
-  name: PropTypes.string,
-  email: PropTypes.string,
-  phone: PropTypes.number
+
+  contact: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.number,
+  })
 };
 
 export default ContactItem;
