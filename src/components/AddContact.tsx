@@ -35,10 +35,26 @@ class AddContact extends Contact {
 
 
     return (<form onSubmit={this.addContact} className="add-contact">
-    <input name="name" ref={name => this.name = name} type="text"/>
-    <input name="email" ref={email => this.email = email} type="text"/>
-    <input name="phone" ref={phone => this.phone = phone} type="number"/>
-    <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}>Add Contact</button>
+    <div className="form-group">
+      <label htmlFor="name">Name</label>
+      <input name="name" ref={name => this.name = name} type="text"/>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="email">Email</label>
+      <input name="email" ref={email => this.email = email} type="text"/>
+    </div>
+    
+    <div className="form-group">
+      <label htmlFor="phone">Phone</label>
+      <input name="phone" ref={phone => this.phone = phone} type="number"/>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="">&nbsp;</label>
+      <button type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.validate()}>Add Contact</button>
+    </div>
+    
     </form>);
   }
   

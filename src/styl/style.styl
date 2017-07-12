@@ -1,8 +1,80 @@
 @require '../../node_modules/reset-css/reset.css';
 
 body
-  background green
+  background #4450FF
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
+  background: #1e5799; /* Old browsers */
+  background: linear-gradient(45deg,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: linear-gradient(135deg, rgba(72,164,234,1) 0%, rgba(31,133,229,1) 100%);
 
 
-h1 
-  font-style sans-serif
+html, body
+  font-family Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size 16px
+  line-height 1.5
+
+a
+  text-decoration none
+
+.pure-header
+
+  ul
+    display flex
+    padding-bottom: 2px
+    background-color rgba(#000, 0.8)
+    box-shadow: 0px 1px 8px 1px rgba(0,0,0,0.75);
+
+
+   
+
+  li
+    flex 1 1 50%
+    // padding 2rem
+    display flex
+    font-size 1.5rem
+    transition all 0.2s ease-in
+    &:first-child
+      border-right 1px solid white
+
+    &:nth-child(2)
+      border-left 1px solid white
+    
+    &:hover
+      background-color #ddd
+      color #111
+
+    a
+      color white
+      padding 2rem
+      flex 1 1 100%
+      display block
+      transition all 0.2s ease-in
+      &:hover
+        color #111
+
+
+
+nav.pure-header
+  padding 0
+  margin 0
+  width 100%
+
+.content
+  width 80%
+  margin 0 auto
+  padding 1rem
+  text-align center
+
+
+
+.contactList
+  margin-top 5rem
+
+.form-group
+  display flex
+  flex-direction column
+  flex 1 1 auto
+
+.add-contact
+  display flex

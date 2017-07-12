@@ -5,19 +5,21 @@ import ContactList from './ContactList';
 export default () => (
   <Router>
     <div>
-      <ul>
-        <li>
-          <NavLink to={'/'}>
-            Contact List
-          </NavLink>
-        </li>
+      <nav className="pure-header content">
+        <ul>
+          <li>
+            <NavLink to={'/'}>
+              Contact List
+            </NavLink>
+          </li>
       
-        <li>
-          <NavLink to={'/about'}>
-            About
-          </NavLink>
-        </li>
-      </ul>
+          <li>
+            <NavLink to={'/about'}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
 
       <Switch>
         <Route exact path='/' component={ContactList}></Route>
