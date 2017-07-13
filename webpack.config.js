@@ -4,6 +4,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+const stylusAutoprefixer = require('autoprefixer-stylus');
+
 const webpack = require('webpack');
 
 const Merge = require('webpack-merge');
@@ -116,11 +118,23 @@ const prodConfig = {
       },
     ],
   },
+  
   plugins: [
   //   new UglifyJSPlugin({
   //   extractComments: true,
   //   sourceMap: true
   // })
+
+  new webpack.LoaderOptionsPlugin({
+    test: /\.styl$/,
+    stylus: {
+      // You can have multiple stylus configs with other names and use them
+      // with `stylus-loader?config=otherConfig`.
+      default: {
+        use: [stylusAutoprefixer({ browsers: ['last 3 versions']})],
+      },
+    },
+  }),
 
   new ExtractTextPlugin('style.css'),
 
