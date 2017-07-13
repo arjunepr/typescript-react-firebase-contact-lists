@@ -18,6 +18,7 @@ class ContactItem extends Contact {
     this.updateDetails = this.updateDetails.bind(this);
     this.generateRecord = this.generateRecord.bind(this);
     this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
+    this.cancelUpdation = this.cancelUpdation.bind(this);
   }
 
   updateDetails(event: any){
@@ -38,8 +39,18 @@ class ContactItem extends Contact {
   }
 
   toggleDeleteMode(event :React.MouseEvent<HTMLButtonElement>){
-    // event.preventDefault();
-    this.setState(prevState => ({ deleteMode: !prevState.deleteMode }));
+    event.preventDefault();
+    this.setState(prevState => ({ deleteMode: !prevState.deleteMode, editable: false }));
+  }
+
+  cancelUpdation(event :React.MouseEvent<HTMLButtonElement>){
+    event.preventDefault();
+
+    this.setState({ editable: false });
+
+    Object.keys(this.updationRecord).forEach(field => {
+      this.updationRecord[field].value = this.props.contact[field];
+    });
   }
   
   
@@ -51,13 +62,17 @@ class ContactItem extends Contact {
 
     if(!this.state.deleteMode){
       finalBlock = <span>
-          <button className="btn" type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
-          <button onClick={this.toggleDeleteMode} className="deletion">Delete</button>
+          <button className="btn btn-blue" type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
+          {editable === true ? 
+            <button className="btn btn-blue" onClick={this.cancelUpdation}>Cancel</button> : 
+            <button className="btn btn-red" onClick={this.toggleDeleteMode} >Delete</button>  
+          }
+          
         </span>;
     } else {
       finalBlock = <span>
-        <button className="deletion" onClick={this.props.deleteRecord}>Confirm Deletion</button>
-        <button className="cancelation" onClick={this.toggleDeleteMode}>Cancel</button>
+        <button className="btn btn-red" onClick={this.props.deleteRecord}>Confirm Deletion</button>
+        <button className="btn btn-blue" onClick={this.toggleDeleteMode}>Cancel</button>
         <span className="confirmationText">Are you sure you would like to delete?</span>
       </span>
     }

@@ -26,9 +26,9 @@ a
   text-decoration none
 
 
-.app-main
-  
 
+
+// This is the header region.
 
 .pure-header
 
@@ -72,6 +72,8 @@ a
 
 
 
+
+// This makes the site-navigation / header extend to full with, without padding and without margin.
 nav.pure-header
   padding 0
   margin 0
@@ -84,6 +86,7 @@ nav.pure-header
   text-align center
 
 
+// This is the whole contact-list component 
 
 .contactList
   margin-top 5rem
@@ -91,33 +94,48 @@ nav.pure-header
   width 90%
   margin 0 auto
 
+
+
+
+// The AddContact component
+
+.add-contact
+  display flex
+  margin-bottom 1rem
+
+
+
+
+// A form group. In the add-contact, this is a label + an input field
+
 .form-group
   display flex
   flex-direction column
   flex 1 1 auto
   min-height 1rem
 
-.add-contact
-  display flex
-  margin-bottom 1rem
+  > *
+    max-width 22vw
+
 
 // Now for each contact item.
 .contact-item
   display flex
   align-items center
-
-  span
-    display flex
-    flex-wrap wrap
-
-    > *
-      flex 1 1 50%
-      min-height 100%
+  
   
   > *
-    flex 1 1
-    min-height 10vh
+    flex 1 1 10%
+    // min-height 100%
+    min-height 70px
+    max-width 20vw
     text-align center
+
+    &:first-child
+      margin-left auto
+
+    &:last-child
+      margin-right auto
 
 .confirmationText
   text-align center
@@ -126,53 +144,67 @@ nav.pure-header
 
 
 
-
-
-border-rightify(right-color, right-size)
-  border none
-  border-right right-size solid right-color
-
-
-
+// Input element of each SAVED record.
 .input-saved
+  padding 0.8rem
   font-size 1.5rem
-  background-color #eee
-  // border-rightify(#000, 1px)
-  border 5px solid #99f
+  background-color #595853
+  color #fff
+  border-radius 2.5px
+  margin-right 1px
+  border 2px ridge #000
+  // max-height 5.7rem
 
   &:last-child
     border-right none
 
   &[disabled]
-    background-color #000
-    color #fff
-    border-rightify(#fff, 1px)
+    background-color #333
 
 
 
-.btn {
+
+// Prettified buttons below. Going to make them look better later on.
+
+
+.btn
+  border-raidus 7px
+  color #fff
+  font-size 1.5rem
+  padding 0.5rem
+  text-decoration none
+  width 100%
+
+  &:hover
+    text-decoration none
+
+.btn-blue
   background: #3463d9;
-  background-image: -webkit-linear-gradient(top, #3463d9, #2980b9);
-  background-image: -moz-linear-gradient(top, #3463d9, #2980b9);
-  background-image: -ms-linear-gradient(top, #3463d9, #2980b9);
-  background-image: -o-linear-gradient(top, #3463d9, #2980b9);
   background-image: linear-gradient(to bottom, #3463d9, #2980b9);
-  -webkit-border-radius: 7;
-  -moz-border-radius: 7;
-  border-radius: 7px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-}
 
-.btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
+  &:hover
+    background: #3cb0fd;
+    background-image background-image: linear-gradient(#3cb0fd, #3498db)
+
+
+.btn-red
+  background: #d9346b;
+  background-image: linear-gradient(to bottom, #d9346b, #b82b6f);
+
+  &:hover
+    background: #fc3c56;
+    background-image: linear-gradient(to bottom, #fc3c56, #d9346b);
+
+
+@media all and (max-width 950px)
+  html, body
+    font-size 12px
+
+  .input-saved
+    font-size 1.25rem
+
+  // .btn, .btn-red
+    
+
+
+// @media all and (max-width)
