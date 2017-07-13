@@ -22,11 +22,8 @@ class AddContact extends Contact {
   }
 
   validate(){
-    // console.log(AddContact.fields);
-    AddContact.fields.forEach(field => console.log(this.state[field]));
     const valid = AddContact.fields.every((field: string) => this.state[field] ? this.state[field] : null);
     this.setState({ valid });
-    console.log(this.state);
   }
 
   clearFields(){
@@ -68,7 +65,7 @@ class AddContact extends Contact {
 
     <div className="form-group">
       <label htmlFor="email">Email</label>
-      <input name="email" ref={email => this.email = email} type="text" onChange={(event) => this.setAndValidate(event, 'email')}/>
+      <input name="email" ref={email => this.email = email} type="email" onChange={(event) => this.setAndValidate(event, 'email')}/>
     </div>
     
     <div className="form-group">

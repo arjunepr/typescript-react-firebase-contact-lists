@@ -1,5 +1,9 @@
 @require '../../node_modules/reset-css/reset.css';
 
+*
+  box-sizing border-box
+  overflow visible
+
 body
   // background #4450FF
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
@@ -10,11 +14,13 @@ body
   background-image linear-gradient(to bottom right, rgba(#99f,1) 0%, rgba(#66f,1) 100%)
   min-height 70vh
   background-repeat: no-repeat
+  
 
 html, body
   font-family Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif
   font-size 16px
   line-height 1.5
+
 
 a
   text-decoration none
@@ -81,7 +87,7 @@ nav.pure-header
 
 .contactList
   margin-top 5rem
-  background-color #ddd
+  background-color #efefef
   width 90%
   margin 0 auto
 
@@ -93,3 +99,80 @@ nav.pure-header
 
 .add-contact
   display flex
+  margin-bottom 1rem
+
+// Now for each contact item.
+.contact-item
+  display flex
+  align-items center
+
+  span
+    display flex
+    flex-wrap wrap
+
+    > *
+      flex 1 1 50%
+      min-height 100%
+  
+  > *
+    flex 1 1
+    min-height 10vh
+    text-align center
+
+.confirmationText
+  text-align center
+  width 100%
+  // padding 1rem
+
+
+
+
+
+border-rightify(right-color, right-size)
+  border none
+  border-right right-size solid right-color
+
+
+
+.input-saved
+  font-size 1.5rem
+  background-color #eee
+  // border-rightify(#000, 1px)
+  border 5px solid #99f
+
+  &:last-child
+    border-right none
+
+  &[disabled]
+    background-color #000
+    color #fff
+    border-rightify(#fff, 1px)
+
+
+
+.btn {
+  background: #3463d9;
+  background-image: -webkit-linear-gradient(top, #3463d9, #2980b9);
+  background-image: -moz-linear-gradient(top, #3463d9, #2980b9);
+  background-image: -ms-linear-gradient(top, #3463d9, #2980b9);
+  background-image: -o-linear-gradient(top, #3463d9, #2980b9);
+  background-image: linear-gradient(to bottom, #3463d9, #2980b9);
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}

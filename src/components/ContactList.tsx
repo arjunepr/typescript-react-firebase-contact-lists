@@ -14,10 +14,28 @@ class ContactList extends React.Component<any, any> {
     this.resetList = this.resetList.bind(this);
     this.addContact = this.addContact.bind(this);
     this.updateContact = this.updateContact.bind(this);
+    this.deleteRecord = this.deleteRecord.bind(this);
+    this.resetList();
   }
 
   componentDidMount(){
-   this.resetList();
+  //  this.resetList();
+  }
+
+  deleteRecord(record: any){
+    const self = this;
+    return function(event :Event){
+      event.preventDefault();
+
+      db.remove({ _id: record._id}, (err :Error) => {
+        if(err){
+          console.log(err);
+          throw err;
+        };
+
+        self.resetList();
+      })
+    }
   }
 
   resetList(){
@@ -63,7 +81,7 @@ class ContactList extends React.Component<any, any> {
     return (
     <div className="contactList content">
       <AddContact addContact={this.addContact} />
-      {this.state.contacts.map((contact :any) => <ContactItem key={contact._id} contact={contact} updateContact={this.updateContact} />)}
+      {this.state.contacts.map((contact :any) => <ContactItem key={contact._id} contact={contact.doc} updateContact={this.updateContact} deleteRecord={this.deleteRecord(contact)} />)}
     </div>
     );
   }
