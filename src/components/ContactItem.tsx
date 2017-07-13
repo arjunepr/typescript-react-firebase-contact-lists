@@ -13,7 +13,10 @@ class ContactItem extends Contact {
 
     };
 
+    this.updationRecord = {};
+
     this.updateDetails = this.updateDetails.bind(this);
+    this.generateRecord = this.generateRecord.bind(this);
   }
 
   updateDetails(event: any){
@@ -29,7 +32,7 @@ class ContactItem extends Contact {
       editable: false,
     });
 
-    this.props.updateContact(this.props.contact, this.generateRecord());
+    this.props.updateContact(this.props.contact, this.generateRecord(this.updationRecord));
 
   }
   
@@ -40,9 +43,9 @@ class ContactItem extends Contact {
 
     return (
       <form onSubmit={this.updateDetails} className="contact-item">
-        <input name="name" type="text" defaultValue={user.name} ref={(input) => this.name = name}  disabled={!editable}/>
-        <input name="email" type="email" defaultValue={user.email} ref={(email) => this.email = email} disabled={!editable}/>
-        <input name="phone" type="number" defaultValue={user.number} ref={(phone) => this.phone = phone} disabled={!editable}/>
+        <input name="name" type="text" defaultValue={user.name} ref={(input) => this.updationRecord.name = name}  disabled={!editable}/>
+        <input name="email" type="email" defaultValue={user.email} ref={(email) => this.updationRecord.email = email} disabled={!editable}/>
+        <input name="phone" type="number" defaultValue={user.number} ref={(phone) => this.updationRecord.phone = phone} disabled={!editable}/>
         <button type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
       </form> )
   }

@@ -12,7 +12,7 @@ const { join } = require('path');
 
 const commonConfig = {
   entry: {
-    build: './src/app.ts',
+    build: ['./src/app.ts'],
   },
   output: {
     path: join(__dirname, 'dist'),

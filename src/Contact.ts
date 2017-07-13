@@ -22,10 +22,10 @@ export default abstract class Contact extends Component<any, any> {
 
   
 
-  protected generateRecord(){
-    return this.fields.reduce((record: any, currentField: string) => {
+  protected generateRecord(obj :any) {
+    return Contact.fields.reduce((record: any, currentField: string) => {
 
-      record[currentField] = this[currentField].value.trim();
+      record[currentField] = obj[currentField];
 
       return record;
 

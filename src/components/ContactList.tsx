@@ -61,7 +61,7 @@ class ContactList extends React.Component<any, any> {
     return (
     <div className="contactList content">
       <AddContact addContact={this.addContact} />
-      {this.state.contacts.map((contact :Object) => <ContactItem contact={contact} />)}
+      {this.state.contacts.map((contact :Object) => <ContactItem contact={contact} updateContact={this.updateContact} />)}
     </div>
     );
   }
