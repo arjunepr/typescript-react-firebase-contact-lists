@@ -70,12 +70,12 @@ class AddContact extends Contact {
     
     <div className="form-group">
       <label htmlFor="phone">Phone</label>
-      <input name="phone" ref={phone => this.phone = phone} type="number" onChange={(event) => this.setAndValidate(event, 'phone')}/>
+      <input name="phone" ref={phone => this.phone = phone} type="text" onChange={(event) => this.setAndValidate(event, 'phone')}/>
     </div>
 
     <div className="form-group">
       <label htmlFor="submit">&nbsp;</label>
-      <button name="submit" type="submit" className="add-item" onClick={this.props.addItem} disabled={!this.state.valid}>Add Contact</button>
+      <button name="submit" type="submit" className="add-item btn btn-gold" onClick={this.props.addItem} disabled={!this.state.valid}>Add Contact</button>
     </div>
     
     </form>);

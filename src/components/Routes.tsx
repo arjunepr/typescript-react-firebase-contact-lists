@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { HashRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import ContactList from './ContactList';
+import About from './About';
 
 export default () => (
   <Router>
@@ -23,7 +24,7 @@ export default () => (
 
       <Switch>
         <Route exact path='/' component={ContactList}></Route>
-        <Route path='/about'></Route>
+        <Route path='/about' component={About}></Route>
         <Route></Route>
       </Switch>
     </div>

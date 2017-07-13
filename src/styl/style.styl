@@ -12,7 +12,7 @@ body
   // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   background-color #99f
   background-image linear-gradient(to bottom right, rgba(#99f,1) 0%, rgba(#66f,1) 100%)
-  min-height 70vh
+  min-height 100vh
   background-repeat: no-repeat
   
 
@@ -24,6 +24,7 @@ html, body
 
 a
   text-decoration none
+  color green
 
 
 
@@ -31,18 +32,14 @@ a
 // This is the header region.
 
 .pure-header
+  z-index 2
+  position fixed
 
   ul
     display flex
     padding-bottom: 2px
-    background-color rgba(#000, 0.8)
+    background-color rgba(#000, 1)
     box-shadow: 0px 1px 8px 1px rgba(0,0,0,0.75);
-    position relative
-
-    &:before
-      position absolute
-
-
    
 
   li
@@ -89,11 +86,14 @@ nav.pure-header
 // This is the whole contact-list component 
 
 .contactList
-  margin-top 5rem
+  padding-top 10rem
   background-color #efefef
   width 90%
   margin 0 auto
 
+  h2
+    font-size 3rem
+    margin-bottom 1rem
 
 
 
@@ -116,12 +116,14 @@ nav.pure-header
 
   > *
     max-width 22vw
+    height 100%
 
 
 // Now for each contact item.
 .contact-item
   display flex
   align-items center
+  margin-bottom 1rem
   
   
   > *
@@ -140,6 +142,9 @@ nav.pure-header
 .confirmationText
   text-align center
   width 100%
+  background-color #222
+  color #bbb
+  border-radius 4px
   // padding 1rem
 
 
@@ -147,7 +152,7 @@ nav.pure-header
 // Input element of each SAVED record.
 .input-saved
   padding 0.8rem
-  font-size 1.5rem
+  // font-size 1.2rem
   background-color #595853
   color #fff
   border-radius 2.5px
@@ -168,9 +173,9 @@ nav.pure-header
 
 
 .btn
-  border-raidus 7px
+  border-radius 7px
   color #fff
-  font-size 1.5rem
+  font-size 1rem
   padding 0.5rem
   text-decoration none
   width 100%
@@ -180,20 +185,75 @@ nav.pure-header
 
 .btn-blue
   background: #3463d9;
-  background-image: linear-gradient(to bottom, #3463d9, #2980b9);
+  background-image linear-gradient(#3463d9, #2980b9)
 
   &:hover
     background: #3cb0fd;
-    background-image background-image: linear-gradient(#3cb0fd, #3498db)
+    background-image linear-gradient(#3cb0fd, #3498db)
+
+.btn-gold
+  background: #99f;
+  background-image linear-gradient(to bottom right, #99f 0%, #66f 100%)
+
+  &[disabled]
+    background-color #777
+    background-image none
+    color #999
+
+    &:hover
+      background #777
+
+  &:hover
+    background: #77f;
+    background-image linear-gradient(to bottom right, #77f 0%, #99f 100%);
 
 
 .btn-red
   background: #d9346b;
-  background-image: linear-gradient(to bottom, #d9346b, #b82b6f);
+  background-image linear-gradient(to bottom, #d9346b, #b82b6f);
 
   &:hover
     background: #fc3c56;
-    background-image: linear-gradient(to bottom, #fc3c56, #d9346b);
+    background-image linear-gradient(to bottom, #fc3c56, #d9346b);
+
+
+// Now, for the about route.
+.about
+  line-height 2
+  letter-spacing 0.8px
+  position relative
+  z-index 0
+  top 15vh
+  background-color #eee
+  padding 2rem
+
+  p
+    margin-bottom 1rem
+
+  h3
+    font-size 3rem
+
+  hr
+    width 20%
+    margin-left 0
+    position relative
+    background-color #000
+    height 3px
+    animation pulsing 1s linear infinite alternate
+
+
+@keyframes pulsing
+  0% {
+    // transform translateX(0%)
+    // margin 0 auto 0 0
+    left 0%
+  }
+
+  100% {
+    // margin 0 0 0 auto
+    left calc(100% - 20%)
+  }
+
 
 
 @media all and (max-width 950px)
@@ -203,8 +263,76 @@ nav.pure-header
   .input-saved
     font-size 1.25rem
 
+  .btn
+    font-size 1.4rem
+
+  .about
+    font-size 1.4rem
+
   // .btn, .btn-red
+    
+@media all and (max-width 800px)
+  .input-saved
+    font-size 1rem
+
+
+@media all and (max-width 660px)
+
+
+  .add-contact
+    flex-direction column
+
+    input, label, button
+      width 90%
+      margin 0 auto
+      max-width none
+
     
 
 
-// @media all and (max-width)
+  .contact-item
+    flex-direction column
+    flex-wrap nowrap
+    justify-content center
+    margin-bottom 1rem
+    background-color #ddd
+    padding 1rem
+    border-radius 8px
+
+    
+    
+    .input-saved, span
+      flex 1 1 100%
+      width 90%
+      max-width none
+      border-radius 6px
+      margin 0.1rem 0 0 0
+      text-align center
+
+
+    .input-saved
+      order 10
+
+    span
+      display flex
+      flex-wrap wrap
+      // flex-direction column
+      // width 90%
+      margin 0 auto
+      order 0
+
+      button
+        flex 1 1;
+        text-align center
+
+
+  .about
+    width 95%
+    font-size 1.2rem
+
+    p
+      margin-bottom 0.5rem
+
+    h3
+      font-size 2rem
+

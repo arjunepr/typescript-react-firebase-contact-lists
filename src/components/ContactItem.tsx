@@ -64,7 +64,7 @@ class ContactItem extends Contact {
       finalBlock = <span>
           <button className="btn btn-blue" type="submit">{editable === true ? 'Finalize' : 'Edit'}</button>
           {editable === true ? 
-            <button className="btn btn-blue" onClick={this.cancelUpdation}>Cancel</button> : 
+            <button className="btn btn-gold" onClick={this.cancelUpdation}>Cancel</button> : 
             <button className="btn btn-red" onClick={this.toggleDeleteMode} >Delete</button>  
           }
           
@@ -73,7 +73,7 @@ class ContactItem extends Contact {
       finalBlock = <span>
         <button className="btn btn-red" onClick={this.props.deleteRecord}>Confirm Deletion</button>
         <button className="btn btn-blue" onClick={this.toggleDeleteMode}>Cancel</button>
-        <span className="confirmationText">Are you sure you would like to delete?</span>
+        <div className="confirmationText">Are you sure you would like to delete?</div>
       </span>
     }
 
@@ -81,7 +81,7 @@ class ContactItem extends Contact {
       <form onSubmit={this.updateDetails} className="contact-item">
         <input className="input-saved" name="name" type="text" defaultValue={user.name} ref={(input) => this.updationRecord.name = name}  disabled={!editable}/>
         <input className="input-saved" name="email" type="email" defaultValue={user.email} ref={(email) => this.updationRecord.email = email} disabled={!editable}/>
-        <input className="input-saved" name="phone" type="number" defaultValue={user.phone} ref={(phone) => this.updationRecord.phone = phone} disabled={!editable}/>
+        <input className="input-saved" name="phone" type="text" defaultValue={user.phone} ref={(phone) => this.updationRecord.phone = phone} disabled={!editable}/>
         {finalBlock}
       </form> )
   }
