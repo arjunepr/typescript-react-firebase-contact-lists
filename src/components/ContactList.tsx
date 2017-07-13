@@ -49,6 +49,8 @@ class ContactList extends React.Component<any, any> {
     
     const doc_id = doc._id;
 
+    console.log(doc_id);
+
     db.update({ _id: doc_id}, {updations}, (err: Error) => {
       if(err){
         console.log(err);
@@ -61,7 +63,7 @@ class ContactList extends React.Component<any, any> {
     return (
     <div className="contactList content">
       <AddContact addContact={this.addContact} />
-      {this.state.contacts.map((contact :Object) => <ContactItem contact={contact} updateContact={this.updateContact} />)}
+      {this.state.contacts.map((contact :any) => <ContactItem key={contact._id} contact={contact} updateContact={this.updateContact} />)}
     </div>
     );
   }

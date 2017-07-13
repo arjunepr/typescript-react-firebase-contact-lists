@@ -1,13 +1,15 @@
 @require '../../node_modules/reset-css/reset.css';
 
 body
-  background #4450FF
+  // background #4450FF
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
-  background: #1e5799; /* Old browsers */
-  background: linear-gradient(45deg,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // background: #1e5799; /* Old browsers */
+  // background: linear-gradient(45deg,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  background: linear-gradient(135deg, rgba(72,164,234,1) 0%, rgba(31,133,229,1) 100%);
-
+  background-color #99f
+  background-image linear-gradient(to bottom right, rgba(#99f,1) 0%, rgba(#66f,1) 100%)
+  min-height 70vh
+  background-repeat: no-repeat
 
 html, body
   font-family Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -17,6 +19,11 @@ html, body
 a
   text-decoration none
 
+
+.app-main
+  
+
+
 .pure-header
 
   ul
@@ -24,6 +31,10 @@ a
     padding-bottom: 2px
     background-color rgba(#000, 0.8)
     box-shadow: 0px 1px 8px 1px rgba(0,0,0,0.75);
+    position relative
+
+    &:before
+      position absolute
 
 
    
@@ -70,6 +81,9 @@ nav.pure-header
 
 .contactList
   margin-top 5rem
+  background-color #ddd
+  width 90%
+  margin 0 auto
 
 .form-group
   display flex
