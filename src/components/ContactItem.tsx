@@ -10,7 +10,9 @@ class ContactItem extends Contact {
     this.state = {
 
       editable: false,
-      deleteMode: false
+      deleteMode: false,
+      contact: this.props.contact,
+      stagingObject: this.props.contact,
     };
 
     this.updationRecord = {};
@@ -19,6 +21,7 @@ class ContactItem extends Contact {
     this.generateRecord = this.generateRecord.bind(this);
     this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
     this.cancelUpdation = this.cancelUpdation.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   updateDetails(event: any){
@@ -34,7 +37,7 @@ class ContactItem extends Contact {
       editable: false,
     });
 
-    this.props.updateContact(this.props.contact, this.generateRecord(this.updationRecord));
+    this.props.updateContact(this.props.contact._id, this.state.stagingObject);
 
   }
 
@@ -43,20 +46,29 @@ class ContactItem extends Contact {
     this.setState(prevState => ({ deleteMode: !prevState.deleteMode, editable: false }));
   }
 
+  handleChange(event: any, field: string) {
+    const newStaging = {...this.state.stagingObject, [field]: event.target.value.trim() }
+    this.setState({stagingObject: newStaging});
+  }
+
   cancelUpdation(event :React.MouseEvent<HTMLButtonElement>){
     event.preventDefault();
 
-    this.setState({ editable: false });
+    this.setState({ stagingObject: this.props.contact, editable: false });
 
-    Object.keys(this.updationRecord).forEach(field => {
-      this.updationRecord[field].value = this.props.contact[field];
-    });
+    // this.updationRecord = this.props.contact;
+
+    // this.props.reRenderComponent();
+
+    // this.forceUpdate();
+
   }
   
   
   render(){
     const editable = this.state.editable;
-    const user = this.props.contact;
+    const user = this.state.contact;
+    const staging = this.state.stagingObject;
 
     let finalBlock;
 
@@ -79,9 +91,9 @@ class ContactItem extends Contact {
 
     return (
       <form onSubmit={this.updateDetails} className="contact-item">
-        <input className="input-saved" name="name" type="text" defaultValue={user.name} ref={(input) => this.updationRecord.name = name}  disabled={!editable}/>
-        <input className="input-saved" name="email" type="email" defaultValue={user.email} ref={(email) => this.updationRecord.email = email} disabled={!editable}/>
-        <input className="input-saved" name="phone" type="text" defaultValue={user.phone} ref={(phone) => this.updationRecord.phone = phone} disabled={!editable}/>
+        <input className="input-saved" name="name" type="text" value={staging.name} onChange={(event) => this.handleChange(event, 'name')}  disabled={!editable}/>
+        <input className="input-saved" name="email" type="email" value={staging.email} onChange={(event) => this.handleChange(event, 'email')} disabled={!editable}/>
+        <input className="input-saved" name="phone" type="text" value={staging.phone} onChange={(event) => this.handleChange(event, 'phone')} disabled={!editable}/>
         {finalBlock}
       </form> )
   }

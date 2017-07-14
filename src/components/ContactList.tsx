@@ -15,7 +15,12 @@ class ContactList extends React.Component<any, any> {
     this.addContact = this.addContact.bind(this);
     this.updateContact = this.updateContact.bind(this);
     this.deleteRecord = this.deleteRecord.bind(this);
+    this.reRenderComponent = this.reRenderComponent.bind(this);
     this.resetList();
+  }
+
+  reRenderComponent(){
+    this.forceUpdate();
   }
 
   componentDidMount(){
@@ -52,7 +57,7 @@ class ContactList extends React.Component<any, any> {
   }
 
   addContact(doc :Object){
-    db.insert({doc}, (err: Error, doc: Object) => {
+    db.insert({...doc}, (err: Error, doc: Object) => {
       if(err){
         console.log(err);
         throw err;
@@ -63,13 +68,10 @@ class ContactList extends React.Component<any, any> {
 
   }
 
-  updateContact(doc :any, updations: Object){
+  updateContact(docId :any, updations: Object){
     
-    const doc_id = doc._id;
 
-    console.log(doc_id);
-
-    db.update({ _id: doc_id}, {updations}, (err: Error) => {
+    db.update({ _id: docId}, {...updations}, (err: Error) => {
       if(err){
         console.log(err);
         throw err;
@@ -81,7 +83,7 @@ class ContactList extends React.Component<any, any> {
     return (
     <div className="contactList content">
       <AddContact addContact={this.addContact} />
-      {this.state.contacts.map((contact :any) => <ContactItem key={contact._id} contact={contact.doc} updateContact={this.updateContact} deleteRecord={this.deleteRecord(contact)} />)}
+      {this.state.contacts.map((contact :any) => <ContactItem key={contact._id} contact={contact} updateContact={this.updateContact} deleteRecord={this.deleteRecord(contact)} reRenderComponent={this.reRenderComponent} />)}
     </div>
     );
   }
