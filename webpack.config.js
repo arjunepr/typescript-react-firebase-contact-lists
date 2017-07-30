@@ -29,125 +29,133 @@ const commonConfig = {
   module: {
     rules: [
 
-      { 
-        test: /\.((ts)|(tsx))$/, 
-        use: ['ts-loader'] 
+      {
+        test: /\.((ts)|(tsx))$/,
+        use: ['ts-loader']
       },
 
       {
         test: /\.html$/,
         use: [
-              {
-                loader: "file-loader",
-                options: {
-                  name: "[name].html",
-                },
-              },
-            
-              {
-                loader: "extract-loader",
-              },
-
-              {
-                loader: "html-loader",
-                options: {
-                  // attrs: ["img:src", "link:href"],
-                  // interpolate: true,
-                },
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].html",
             },
-          ],
+          },
+
+          {
+            loader: "extract-loader",
+          },
+
+          {
+            loader: "html-loader",
+            options: {
+              // attrs: ["img:src", "link:href"],
+              // interpolate: true,
+            },
+          },
+        ],
       }
     ]
   },
   plugins: [
 
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
-      })
-    ]
+      name: 'vendor'
+    })
+  ]
 };
 
 const devConfig = {
   devtool: 'inline-source-map',
   module: {
     rules: [
-      { 
-        test: /\.styl$/, 
+      {
+        test: /\.styl$/,
         use: ['style-loader', 'css-loader', 'stylus-loader'],
       },
 
-      { 
-        test: /\.css$/, 
+      {
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
     ]
   },
 
   devServer: {
-      contentBase: join(__dirname, "dist"),
-      compress: true,
-      port: 8080,
-      historyApiFallback: true
-    },
+    contentBase: join(__dirname, "dist"),
+    compress: true,
+    port: 8080,
+    historyApiFallback: true
+  },
 
-    entry: {
-      server: "webpack-dev-server/client?http://localhost:8080/"
-    }
+  entry: {
+    server: "webpack-dev-server/client?http://localhost:8080/"
+  }
 };
 
 const prodConfig = {
   devtool: 'source-map',
   module: {
     rules: [
-      { 
-        test: /\.styl$/, 
+      {
+        test: /\.styl$/,
         use: ExtractTextPlugin.extract({
-          fallback: {loader: 'style-loader'},
+          fallback: { loader: 'style-loader' },
 
           use: ['css-loader', 'stylus-loader']
         })
       },
 
-      { 
-        test: /\.css$/, 
+      {
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: {loader: 'style-loader'},
+          fallback: { loader: 'style-loader' },
 
           use: ['css-loader']
         })
       },
     ],
   },
-  
+
   plugins: [
-  //   new UglifyJSPlugin({
-  //   extractComments: true,
-  //   sourceMap: true
-  // })
+    //   new UglifyJSPlugin({
+    //   extractComments: true,
+    //   sourceMap: true
+    // })
 
-  new webpack.LoaderOptionsPlugin({
-    test: /\.styl$/,
-    stylus: {
-      // You can have multiple stylus configs with other names and use them
-      // with `stylus-loader?config=otherConfig`.
-      default: {
-        use: [stylusAutoprefixer({ browsers: ['last 3 versions']})],
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        // You can have multiple stylus configs with other names and use them
+        // with `stylus-loader?config=otherConfig`.
+        default: {
+          use: [stylusAutoprefixer({ browsers: ['last 3 versions'] })],
+        },
       },
-    },
-  }),
+    }),
 
-  new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('style.css'),
 
-  new webpack.optimize.UglifyJsPlugin({ 
-    sourceMap: true,
-    beautify: false,
-    comments: false,
-    compress: {
-      warnings: false,
-      drop_console: true,
-      screw_ie8: true
-    },
-   })
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      beautify: false,
+      comments: false,
+      compress: {
+        warnings: false,
+        drop_console: true,
+        screw_ie8: true
+      },
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+
+    new webpack.optimize.AggressiveMergingPlugin()
   ]
 };
 

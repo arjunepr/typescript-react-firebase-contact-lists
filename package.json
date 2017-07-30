@@ -6,7 +6,8 @@
   "author": "Arjun Raju Pillai <revarjunr@gmail.com>",
   "scripts": {
     "start": "NODE_ENV=development nodemon --watch webpack.config.js --exec 'rm -rf dist && webpack-dev-server'",
-    "build": "NODE_ENV=production rm -rf dist && webpack -p"
+    "build": "NODE_ENV=production rm -rf dist && webpack -p",
+    "firebase-deploy": "yarn run build && firebase init && firebase deploy"
   },
   "dependencies": {
     "@types/nedb": "^1.8.3",
@@ -25,7 +26,6 @@
   "devDependencies": {
     "autoprefixer-stylus": "^0.14.0",
     "css-loader": "^0.28.4",
-    "electron": "^1.6.11",
     "extract-loader": "^0.1.0",
     "extract-text-webpack-plugin": "beta",
     "file-loader": "^0.11.2",
